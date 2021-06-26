@@ -48,4 +48,8 @@ Route::get('hapusproduk/{id}', 'AdminController@hapus_produk');
 Route::get('datapeserta', 'AdminController@peserta');
 Route::get('status_acc/{id}', 'AdminController@status_acc');
 Route::get('hapususer/{id}', 'AdminController@hapus_user');
+Route::get('datapanitia', 'AdminController@panitia');
+Route::post('addpanitia', 'AdminController@addpanitia');
+Route::post('editpanitia', 'AdminController@editpanitia');
+Route::get('hapuspanitia/{id}', 'AdminController@hapus_panitia');
 

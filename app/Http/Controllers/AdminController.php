@@ -6,6 +6,7 @@ use App\M_User;
 use App\M_sejarah;
 use App\M_lapak;
 use App\M_produk;
+use App\M_panitia;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -278,6 +279,52 @@ class AdminController extends Controller
         $data = M_user::find($id);
         $data->delete();
         return redirect('datapeserta');
+    }
+
+    public function panitia(){
+        $data = M_panitia::all();
+        return view('admin.panitia', compact('data'));
+    }
+
+    public function addpanitia(Request $request){
+        $data = new M_panitia;
+        $data->nama = $request->nama;
+        $data->jabatan = $request->jabatan;
+        $data->deskripsi = $request->deskripsi;
+        if($request->hasFile('gambar')) {
+            // File::delete('Foto/'. $data->image);
+            $image = $request->file('gambar');
+            $filename = $image->getClientOriginalName();
+            $image->move(public_path('Foto/panitia'), $filename);
+            $data->foto = $request->file('gambar')->getClientOriginalName();
+        }
+        $data->save();
+        return redirect('/datapanitia');
+    }
+
+    public function editpanitia(Request $request){
+        $id = $request->id_panitia;
+        $data = M_panitia::find($id);
+        $data->nama = $request->nama;
+        $data->jabatan = $request->jabatan;
+        $data->deskripsi = $request->deskripsi;
+        if($request->hasFile('gambar')) {
+            File::delete('Foto/panitia'. $data->image);
+            $image = $request->file('gambar');
+            $filename = $image->getClientOriginalName();
+            $image->move(public_path('Foto/panitia'), $filename);
+            $data->foto = $request->file('gambar')->getClientOriginalName();
+        }
+        $data->update();
+        return redirect('/datapanitia')->with('success', 'Berhasil diedit');
+    }
+
+    public function hapus_panitia($id){
+        $data = M_panitia::find($id);
+
+        File::delete('Foto/panitia/'. $data->gambar);
+        M_panitia::where('id_panitia', $id)->delete();
+        return redirect('/datapanitia')->with('success', 'Berhasil dihapus');
     }
 
 }

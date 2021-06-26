@@ -150,6 +150,12 @@
                                 <p>Peserta Ngarot</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{url('')}}/datapanitia" class="nav-link">
+                                <i class="nav-icon fas fa-user-alt"></i>
+                                <p>Panitia Ngarot</p>
+                            </a>
+                        </li>
                         
                     </ul>
                 </nav>
