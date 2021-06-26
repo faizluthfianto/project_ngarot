@@ -14,7 +14,7 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
+// USER
 Route::get('/', 'UserController@index');
 Route::get('sejarahngarot', 'UserController@viewsejarah');
 Route::get('syaratngarot', 'UserController@viewsyarat');
@@ -24,8 +24,10 @@ Route::get('sejarahdesa', 'UserController@viewsjdesa');
 Route::get('alattradisional', 'UserController@viewalat');
 Route::get('gadisngarot', 'UserController@viewgadis');
 Route::get('bujangngarot', 'UserController@viewbujang');
+Route::post('daftarpeserta', 'UserController@daftar_peserta');
 
 
+// ADMIN
 Route::get('login', 'AdminController@login');
 Route::post('login', 'AdminController@postlogin');
 Route::post('gantipass', 'AdminController@gantipass');
@@ -54,7 +56,7 @@ Route::post('editpanitia', 'AdminController@editpanitia');
 Route::get('hapuspanitia/{id}', 'AdminController@hapus_panitia');
 
 
-
-
-Route::post('daftarpeserta', 'UserController@daftar_peserta');
+// PESERTA
+Route::get('peserta', 'PesertaController@index');
+Route::post('editpeserta', 'PesertaController@edit_peserta');
 

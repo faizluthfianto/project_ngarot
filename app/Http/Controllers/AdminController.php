@@ -42,13 +42,17 @@ class AdminController extends Controller
         }
 
         if($user->level == 'peserta'){
-            if($user){
-                if(Hash::check($password,$user->password)){
-                    Session::put('id_user',$user->id_user);
-                    Session::put('nama',$user->nama);
-                    Session::put('loginuser',TRUE);
-                    return redirect('/')->with('success', 'Login Berhasil');
-                }else{
+            if($user->status == 1){
+                if($user){
+                    if(Hash::check($password,$user->password)){
+                        Session::put('id_user',$user->id_user);
+                        Session::put('nama',$user->nama);
+                        Session::put('loginpeserta',TRUE);
+                        return redirect('/peserta')->with('success', 'Login Berhasil');
+                    }else{
+                        return redirect('/login')->with('info', 'E-mail / Password Salah');
+                    }
+                } else {
                     return redirect('/login')->with('info', 'E-mail / Password Salah');
                 }
             } else {
