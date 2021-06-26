@@ -1,12 +1,24 @@
 @extends('layouts.user')
 @section('konten') 
-    <div class="all-page-title" style="background-image:url(images/pattern-4.png);">
+<div class="all-page-title" style="background-image:url(user/images/pattern-4.png);">
 		<!--Page -->
         
         <!--End Page-->
         <div class="container text-center">
-            <h1>SYARAT ADAT NGAROT LELEA</h1>
-			<p>1. Pemudi yang belum menikah atau masih gadis<br>2. Pemuda yang belum menikah atau masih bujang<br>3. Harus pemudi asli desa lelea indramayu<br>4. Harus pemuda asli desa lelea indramayu<br></p>
+            <h1>SYARAT MENGIKUTI NGAROT</h1>
         </div>
-    </div>
+    </div><!-- end section -->
+
+    <div id="services" class="section lb">
+        <div class="container-fluid">
+			<div class="container">
+				<div class="row">
+					<div class="section-title text-center">
+						<!-- <h3>SEJARAH NGAROT</h3> -->
+						<p style="align: center">{!! $data->deskripsi !!}</p>
+					</div><!-- end title -->
+				</div>
+			</div>
+		</div>
+	</div>
 @endsection

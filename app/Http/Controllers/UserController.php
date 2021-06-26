@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\M_panitia;
+use App\M_sejarah;
+use App\M_jadwal;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,15 +14,18 @@ class UserController extends Controller
     }
 
     public function viewsejarah(){
-        return view ('user.sejarahngarot');
+        $data = M_sejarah::where('id_sejarah',1)->first();
+        return view ('user.sejarahngarot', compact('data'));
     }
 
     public function viewsyarat(){
-        return view ('user.syaratngarot');
+        $data = M_sejarah::where('id_sejarah',3)->first();
+        return view ('user.syaratngarot', compact('data'));
     }
 
     public function viewjadwal(){
-        return view ('user.jadwalngarot');
+        $data = M_jadwal::where('id_jadwal',1)->first();
+        return view ('user.jadwalngarot',compact('data'));
     }
 
     public function viewdaftar(){
