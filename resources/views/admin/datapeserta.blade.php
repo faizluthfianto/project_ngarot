@@ -47,7 +47,8 @@
                                         <td>{{$datas->ttl}}</td>
                                         <td>{{$datas->jenis_kelamin}}</td>
                                         <td>{{$datas->nohp}}</td>
-                                        <td>{{$datas->gambar}}</td>
+                                        <td><img src="{{url('')}}/Foto/{{$datas->gambar}}" class="img-fluid" width="100 px"
+                                                height="100 px"></td>
                                         <td>
                                         @if($datas->status == 1)
                                         <span class="badge badge-success">Aktif</span></td>

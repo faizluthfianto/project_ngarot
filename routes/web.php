@@ -53,3 +53,8 @@ Route::post('addpanitia', 'AdminController@addpanitia');
 Route::post('editpanitia', 'AdminController@editpanitia');
 Route::get('hapuspanitia/{id}', 'AdminController@hapus_panitia');
 
+
+
+
+Route::post('daftarpeserta', 'UserController@daftar_peserta');
+
