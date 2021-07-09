@@ -25,6 +25,9 @@ Route::get('alattradisional', 'UserController@viewalat');
 Route::get('gadisngarot', 'UserController@viewgadis');
 Route::get('bujangngarot', 'UserController@viewbujang');
 Route::post('daftarpeserta', 'UserController@daftar_peserta');
+Route::get('prodak', 'UserController@prodak');
+Route::post('itemproduk', 'UserController@item_produk');
+Route::get('cart', 'UserController@cart');
 
 
 // ADMIN
@@ -59,4 +62,6 @@ Route::get('hapuspanitia/{id}', 'AdminController@hapus_panitia');
 // PESERTA
 Route::get('peserta', 'PesertaController@index');
 Route::post('editpeserta', 'PesertaController@edit_peserta');
+
+
 
