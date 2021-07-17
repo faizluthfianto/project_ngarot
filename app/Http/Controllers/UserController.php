@@ -183,7 +183,9 @@ class UserController extends Controller
 
     public function cart(){
         session_start();
-        $data = $_SESSION['shopping_cart'];
+        if($_SESSION['shopping_cart'] != null){
+            $data = $_SESSION['shopping_cart'];
+        }
         // dd(json_encode($data));
         return view('user.cart',compact('data'));
     }
