@@ -156,6 +156,12 @@
                                 <p>Panitia Ngarot</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{url('')}}/settingjadwal" class="nav-link">
+                                <i class="nav-icon fas fa-user-alt"></i>
+                                <p>jadwal Ngarot</p>
+                            </a>
+                        </li>
                         
                     </ul>
                 </nav>

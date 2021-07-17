@@ -28,6 +28,7 @@ class UserController extends Controller
 
     public function viewjadwal(){
         $data = M_jadwal::where('id_jadwal',1)->first();
+        // dd($data);
         return view ('user.jadwalngarot',compact('data'));
     }
 
@@ -185,6 +186,16 @@ class UserController extends Controller
         $data = $_SESSION['shopping_cart'];
         // dd(json_encode($data));
         return view('user.cart',compact('data'));
+    }
+
+    public function checkout(){
+        if(!Session::get('loginuser')){
+            return redirect('/login');
+        } else {
+            session_start();
+            $data = $_SESSION['shopping_cart'];
+            return view('user.checkout',compact('data'));
+        }
     }
 }
 

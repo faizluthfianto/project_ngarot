@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Log in</title>
+  <title>Register</title>
 
   <link rel="stylesheet" href="{{ asset('coba/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Ionicons -->
@@ -43,10 +43,40 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Login</p>
+      <p class="login-box-msg">Register</p>
 
-      <form action="{{url('')}}/login" method="post">
+      <form action="{{url('')}}/register" method="post">
       @csrf
+      @if ($errors->any())
+      @foreach ($errors->all() as $error)
+          <div class="alert alert-warning ml-3">
+              <div class="container">
+              <div class="alert-icon">
+                  <i class="material-icons">warning</i>
+              </div>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true"><i class="fa fa-times"></i></span>
+              </button>
+              
+              {{ $error }}
+              
+              </div>
+          </div>
+      @endforeach
+      @endif
+      <div class="form-group">
+        <label for="">Nama Lengkap</label> 
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="">E-mail</label> 
         <div class="input-group mb-3">
           <input type="email" class="form-control" name="email" placeholder="Email">
           <div class="input-group-append">
@@ -55,6 +85,9 @@
             </div>
           </div>
         </div>
+        </div>
+        <div class="form-group">
+        <label for="">Password</label> 
         <div class="input-group mb-3">
           <input type="password" class="form-control" name="password" placeholder="Password">
           <div class="input-group-append">
@@ -63,24 +96,71 @@
             </div>
           </div>
         </div>
+        </div>
+        <div class="form-group">
+        <label for="">Confirm Password</label> 
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="">Tanggal Lahir</label> 
+        <div class="input-group mb-3">
+          <input type="date" class="form-control" name="ttl" placeholder="Tanggal Lahir">
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="">Jenis Kelamin</label> 
+        <div class="input-group mb-3">
+            <select class="custom-select form-control-border" name="jk" id="exampleSelectBorder">
+              <option>pilih Jenis Kelamin</option>
+              <option value="Laki-Laki">Laki - Laki</option>
+              <option value="Perempuan">Perempuan</option>
+            </select>
+          
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="">Nomor Hp</label> 
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="nohp" placeholder="Nomor Hp">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-mobile"></span>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="">Alamat</label> 
+        <div class="input-group mb-3">
+          <textarea name="alamat" id="" class="form-control" cols="10" rows="5" placeholder="alamat"></textarea>
+        </div>
+        </div>
+
+
         <div class="row">
           <div class="col-8">
             
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
       <div class="social-auth-links text-center">
         <p>- OR -</p>
-        <a href="{{url('register')}}" class="btn btn-block btn-primary">
-          Sign up 
+        <a href="{{url('login')}}">
+          sudah punya akun ?
         </a>
       </div>
-
       
       <!-- /.social-auth-links -->
 

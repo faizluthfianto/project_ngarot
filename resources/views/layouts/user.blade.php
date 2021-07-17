@@ -30,7 +30,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('user/css/custom.css')}}">
 <style>
-  .pending{
+.pending{
             position: absolute;
             left: 15px;
             top: 15px;
@@ -70,12 +70,7 @@
 	font-size:17px;
 	color:green;
 }
-h1
-{
-	margin-top:100px;
-	color:green;
-	text-align:center;
-}
+
 #item_div
 {
 	float:left;
@@ -150,7 +145,51 @@ ul.dropdown-cart li .item-right{
 ul.dropdown-cart li .item-right button{
     margin-top:14px;
 	margin-left:40px;
-}   
+} 
+.countdown{
+	display: flex;
+	margin-top: 50px;
+}
+
+.countdown div{
+	position: relative;
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	/* background: linear-gradient(#ec1063, #960083); */
+	color: #fff;
+	margin: 0 10px;
+	font-size: 3em;
+	font-weight: 500;
+}
+
+.countdown div:before{
+	content: '';
+	position: absolute;
+	bottom: -30px;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	/* background: #ec1063; */
+	color: #fff;
+	font-size: 0.35em;
+	line-height: 35px;
+	font-weight: 300;
+}
+
+.countdown #hari:before{
+	content: 'Hari';
+}
+.countdown #jam:before{
+	content: 'Jam';
+}
+.countdown #menit:before{
+	content: 'Menit';
+}
+.countdown #detik:before{
+	content: 'Detik';
+}  
 
 </style>
 	
@@ -179,6 +218,7 @@ $(function lep(){
 	success:function(response) {
 		// console.log(response);
 		$('#total_items').html('<div>' + response + '</div');
+		$('#total_items1').html('<div>' + response + '</div');
 	//   document.getElementById("total_items").value=response;
 	}
   }).then(function(){
@@ -328,10 +368,7 @@ $(document).on('click', '.hapus_cart', function(e){
 		// $('#total_items').html('<div>' + response + '</div');
 	//   document.getElementById("total_items").value=response;
 	}
-  }).then(function(){
-    setTimeout(this, 1000)
-	
-});
+  });
  });
 </script>
 
@@ -407,8 +444,11 @@ $(document).on('click', '.hapus_cart', function(e){
 								<a class="dropdown-item" href="{{url('')}}/bujangngarot">Bujang Ngarot</a> -->
 							<!-- </div> -->
 						</li>
-						
+						@if(!Session::get('loginuser'))
 						<li class="nav-item"><a class="nav-link" href="{{url('')}}/login">Login</a></li>
+						@else
+						<li class="nav-item"><a class="nav-link" href="{{url('')}}/users">{{Session::get('nama')}}</a></li>
+						@endif
 					</ul>
 				</div>
 			</div>

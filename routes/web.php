@@ -28,11 +28,14 @@ Route::post('daftarpeserta', 'UserController@daftar_peserta');
 Route::get('prodak', 'UserController@prodak');
 Route::post('itemproduk', 'UserController@item_produk');
 Route::get('cart', 'UserController@cart');
+Route::get('checkout', 'UserController@checkout');
 
 
 // ADMIN
 Route::get('login', 'AdminController@login');
 Route::post('login', 'AdminController@postlogin');
+Route::get('register', 'AdminController@register');
+Route::post('register', 'AdminController@postregister');
 Route::post('gantipass', 'AdminController@gantipass');
 Route::get('logout', 'AdminController@logout');
 Route::get('home', 'AdminController@index');
@@ -57,11 +60,16 @@ Route::get('datapanitia', 'AdminController@panitia');
 Route::post('addpanitia', 'AdminController@addpanitia');
 Route::post('editpanitia', 'AdminController@editpanitia');
 Route::get('hapuspanitia/{id}', 'AdminController@hapus_panitia');
+Route::get('settingjadwal', 'AdminController@jadwal');
+Route::post('set_jadwal', 'AdminController@set_jadwal');
 
 
 // PESERTA
-Route::get('peserta', 'PesertaController@index');
-Route::post('editpeserta', 'PesertaController@edit_peserta');
+Route::get('users', 'PesertaController@index');
+Route::get('editusers', 'PesertaController@edit');
+Route::post('edituser', 'PesertaController@edit_peserta');
+Route::get('daftar_peserta', 'PesertaController@daftar');
+Route::get('daftar', 'PesertaController@postdaftar');
 
 
 

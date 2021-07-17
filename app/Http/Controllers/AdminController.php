@@ -7,6 +7,7 @@ use App\M_sejarah;
 use App\M_lapak;
 use App\M_produk;
 use App\M_panitia;
+use App\M_jadwal;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -41,14 +42,14 @@ class AdminController extends Controller
             }
         }
 
-        if($user->level == 'peserta'){
+        if($user->level == 'user'){
             if($user->status == 1){
                 if($user){
                     if(Hash::check($password,$user->password)){
                         Session::put('id_user',$user->id_user);
                         Session::put('nama',$user->nama);
-                        Session::put('loginpeserta',TRUE);
-                        return redirect('/peserta')->with('success', 'Login Berhasil');
+                        Session::put('loginuser',TRUE);
+                        return redirect('/')->with('success', 'Login Berhasil');
                     }else{
                         return redirect('/login')->with('info', 'E-mail / Password Salah');
                     }
@@ -66,6 +67,62 @@ class AdminController extends Controller
     public function logout(){
         Session::flush();
         return redirect('/login');
+    }
+
+    public function register(){
+       
+        return View('user.register');
+    }
+
+    public function postregister(Request $request){
+        $rules = array(
+            
+            'nama'         => 'required',       
+            'email'        => 'required|email|unique:user', 
+            'password'     => 'required',
+            'confirm_password'    => 'required',
+            'ttl'         => 'required',
+            'jk'         => 'required',
+            'nohp'         => 'required|numeric',
+            'alamat'         => 'required',
+            
+        );
+        $messages = array(
+        'required' => ':attribute harus diisi.',
+        'unique' => ':attribute sudah ada',
+        'numeric' => ':attribute harus angka',
+        );
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+
+            $messages = $validator->messages();
+            
+            return Redirect('/register')
+                ->withErrors($validator)
+                ->withInput($request->except('password'));
+            
+        } else {
+            if($request->password == $request->confirm_password){
+
+                $data = new M_User;
+                $data->level = 'user';
+                $data->nama = $request->nama;
+                $data->email = $request->email;
+                $data->password = bcrypt($request->password);
+                $data->ttl = $request->ttl;
+                $data->jenis_kelamin = $request->jk;
+                $data->nohp = $request->nohp;
+                $data->status = 1;
+                $data->peserta = 0;
+                $data->alamat = $request->alamat;
+                $data->save();
+                
+                return redirect('/login')->with('success', 'Akun Berhasil didaftarkan');
+            } else {
+                return redirect('/register')->with('success', 'password tidak cocok');
+            }
+        }
     }
 
     public function gantipass(Request $request){
@@ -329,6 +386,34 @@ class AdminController extends Controller
         File::delete('Foto/panitia/'. $data->gambar);
         M_panitia::where('id_panitia', $id)->delete();
         return redirect('/datapanitia')->with('success', 'Berhasil dihapus');
+    }
+
+    public function jadwal(){
+        
+        return view('admin.jadwal');
+    }
+
+    public function set_jadwal(Request $request){
+        // dd($request->tgl_daftars);
+        $i = explode(' ',$request->tgl);
+        // dd($i);
+        $y = explode(' ',$request->tgl1);
+        $tgl_mulai = $i[0].' '.date("G:i", strtotime($i[1]));
+        $tgl_berakhir1 = $i[3].' '.date("G:i", strtotime($i[4]));
+        $tgl_daftar1 = $y[0].' '.date("G:i", strtotime($y[1]));
+        $tgl_selesai = $y[3].' '.date("G:i", strtotime($y[4]));
+        // echo date("G:i", strtotime($time));
+        
+        // $tgl_berakhir = $i[4];
+        // dd($tgl_berakhir1->format('Y-m-d H:i:s'));
+        $data = new M_jadwal;
+        $data->tgl_mulai = $tgl_mulai;
+        $data->tgl_berakhir = $tgl_berakhir1;
+        $data->tgl_daftar = $tgl_daftar1;
+        $data->tgl_selesai = $tgl_selesai;
+        $data->save();
+        // dd($data);
+        return redirect('/settingjadwal');
     }
 
 }

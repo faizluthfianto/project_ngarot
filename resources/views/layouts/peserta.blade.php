@@ -38,7 +38,53 @@
     <link rel="stylesheet" href="{{ asset('coba/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    
+    <style>
+        .countdown{
+	display: flex;
+	margin-top: 50px;
+}
+
+.countdown div{
+	position: relative;
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	/* background: linear-gradient(#ec1063, #960083); */
+	color: #000;
+	margin: 0 10px;
+	font-size: 3em;
+	font-weight: 500;
+}
+
+.countdown div:before{
+	content: '';
+	position: absolute;
+	bottom: -30px;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	/* background: #ec1063; */
+	color: #000;
+	font-size: 0.35em;
+	line-height: 35px;
+	font-weight: 300;
+}
+
+.countdown #hari:before{
+	content: 'Hari';
+}
+.countdown #jam:before{
+	content: 'Jam';
+}
+.countdown #menit:before{
+	content: 'Menit';
+}
+.countdown #detik:before{
+	content: 'Detik';
+}  
+
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -98,9 +144,21 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{url('')}}/home" class="nav-link">
+                            <a href="{{url('')}}/users" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>dashboard</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('')}}/editusers" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Edit User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('')}}/daftar_peserta" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Daftar Peserta</p>
                             </a>
                         </li>
                         
